@@ -105,6 +105,14 @@ function Index() {
     document.documentElement.classList.toggle("dark", isDark);
   }, []);
 
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setSlide((current) => (current + 1) % gallery.length);
+    }, 5000);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
   const toggleTheme = () => {
     const next = !dark;
     setDark(next);
@@ -208,7 +216,7 @@ function Index() {
         <div className="section-shell">
           <SectionHeading index="04">GALERIA DO <em>EVENTO</em></SectionHeading>
           <div className="gallery-stage">
-            <img src={gallery[slide]} alt={`Momento da Semana de Tecnologia ${slide + 1}`} width={1200} height={800} />
+            <img key={slide} className="gallery-image" src={gallery[slide]} alt={`Momento da Semana de Tecnologia ${slide + 1}`} width={1200} height={800} />
             <span className="gallery-count">0{slide + 1} / 03</span>
             <div className="gallery-controls">
               <Button variant="outline" size="icon" onClick={() => setSlide((slide + 2) % 3)} aria-label="Foto anterior"><ChevronLeft /></Button>
