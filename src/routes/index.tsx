@@ -14,6 +14,8 @@ import {
   Users,
   Wrench,
   Lightbulb,
+  Plus,
+  Minus,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -23,13 +25,14 @@ import eventWorkshop from "@/assets/sesi-event-workshop.jpg";
 import gabriel from "@/assets/speaker-gabriel.jpg";
 import bruno from "@/assets/speaker-bruno.jpg";
 import eric from "@/assets/speaker-eric.jpg";
+import facultyPhoto from "@/assets/faculdade-sorocaba.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Semana de Tecnologia 2025 | SESI Sorocaba" },
-      { name: "description", content: "Três dias de palestras, oficinas e conexões na Semana de Tecnologia SESI Sorocaba." },
-      { property: "og:title", content: "Semana de Tecnologia 2025 | SESI Sorocaba" },
+      { title: "Semana de Tecnologia 2026 | SESI Sorocaba" },
+      { name: "description", content: "De 14 a 16 de novembro: três dias de palestras, minicursos e conexões na Semana de Tecnologia SESI Sorocaba." },
+      { property: "og:title", content: "Semana de Tecnologia 2026 | SESI Sorocaba" },
       { property: "og:description", content: "Tecnologia, inovação e oportunidades para construir o futuro." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -45,9 +48,30 @@ const highlights = [
 ];
 
 const schedule = [
-  { time: "09:00", title: "Comunicação que transforma: a arte da oratória no mundo técnico", speaker: "Jorge Sabino · Consultor em performance", place: "Auditório · Piso superior", text: "Clareza, confiança e presença para comunicar ideias técnicas que realmente movimentam pessoas." },
-  { time: "14:00", title: "Indústria 4.0: excelência, arquitetura e inteligência artificial", speaker: "Rodrigo Ferreira · Especialista em inovação", place: "Laboratório de tecnologia", text: "Aplicações práticas de automação e inteligência artificial para a indústria conectada." },
-  { time: "16:30", title: "Primeiros passos em automação com n8n", speaker: "David Vieira e equipe · Analistas de dados", place: "Sala maker · Piso térreo", text: "Construa um fluxo simples e conheça os conceitos essenciais da automação." },
+  {
+    weekday: "SÁBADO", date: "14 NOV",
+    activities: [
+      { time: "09:00", type: "PALESTRA", title: "Comunicação que transforma: a arte da oratória no mundo técnico", speaker: "Jorge Sabino · Consultor em performance", place: "Auditório · Piso superior", text: "Clareza, confiança e presença para comunicar ideias técnicas que realmente movimentam pessoas." },
+      { time: "14:00", type: "PALESTRA", title: "Indústria 4.0: excelência, arquitetura e inteligência artificial", speaker: "Rodrigo Ferreira · Especialista em inovação", place: "Laboratório de tecnologia", text: "Aplicações práticas de automação e inteligência artificial para a indústria conectada." },
+      { time: "16:30", type: "MINICURSO", title: "Primeiros passos em automação com n8n", speaker: "David Vieira e equipe · Analistas de dados", place: "Sala maker · Piso térreo", text: "Construa um fluxo simples e conheça os conceitos essenciais da automação." },
+    ],
+  },
+  {
+    weekday: "DOMINGO", date: "15 NOV",
+    activities: [
+      { time: "09:00", type: "PALESTRA", title: "Cloud e arquitetura de dados para soluções escaláveis", speaker: "Gabriel Faria e Silva · Gestor de Projetos", place: "Auditório · Piso superior", text: "Como transformar desafios complexos em produtos digitais seguros, simples e preparados para crescer." },
+      { time: "13:30", type: "MINICURSO", title: "Inteligência artificial aplicada: do prompt ao protótipo", speaker: "Equipe de Tecnologia SESI · Facilitadores", place: "Laboratório de informática", text: "Uma experiência prática para criar, testar e aprimorar soluções com ferramentas de inteligência artificial." },
+      { time: "16:00", type: "PALESTRA", title: "Saúde mental e liderança na era digital", speaker: "Bruno Souza · Psicólogo e consultor", place: "Auditório · Piso superior", text: "Estratégias para construir relações de trabalho mais conscientes, humanas e sustentáveis." },
+    ],
+  },
+  {
+    weekday: "SEGUNDA-FEIRA", date: "16 NOV",
+    activities: [
+      { time: "09:00", type: "MINICURSO", title: "Prototipagem rápida com cultura maker", speaker: "Equipe Maker SESI · Instrutores", place: "Sala maker · Piso térreo", text: "Da ideia ao primeiro protótipo com ferramentas digitais, colaboração e experimentação prática." },
+      { time: "14:00", type: "PALESTRA", title: "Cibersegurança para pessoas e organizações", speaker: "Gabriel Faria e Silva · Gestor de Projetos", place: "Auditório · Piso superior", text: "Hábitos, riscos e decisões essenciais para proteger dados e operações em um mundo conectado." },
+      { time: "17:00", type: "PALESTRA", title: "Atitude, propósito e alta performance", speaker: "Eric Garcia · Palestrante e treinador", place: "Auditório · Piso superior", text: "Um encerramento sobre escolhas, comportamento e o papel de cada pessoa na construção do futuro." },
+    ],
+  },
 ];
 
 const speakers = [
@@ -72,6 +96,7 @@ function SectionHeading({ index, children }: { index: string; children: React.Re
 function Index() {
   const [slide, setSlide] = useState(0);
   const [dark, setDark] = useState(true);
+  const [showFullSchedule, setShowFullSchedule] = useState(false);
 
   useEffect(() => {
     const saved = window.localStorage.getItem("sesi-theme");
@@ -94,7 +119,7 @@ function Index() {
         <nav aria-label="Navegação principal">
           {nav.map(([label, id]) => <a key={id} href={`#${id}`}>{label}</a>)}
         </nav>
-        <Button variant="outline" size="icon" onClick={toggleTheme} aria-label={dark ? "Ativar modo claro" : "Ativar modo escuro"} title={dark ? "Modo claro" : "Modo escuro"}>
+        <Button variant="ghost" size="icon" className="theme-toggle" onClick={toggleTheme} aria-label={dark ? "Ativar modo claro" : "Ativar modo escuro"} title={dark ? "Modo claro" : "Modo escuro"}>
           {dark ? <Sun /> : <Moon />}
         </Button>
       </header>
@@ -103,16 +128,16 @@ function Index() {
         <div className="hero-copy">
           <div className="status-line"><span /> INOVAÇÃO & FUTURO</div>
           <p className="hero-kicker">SESI SOROCABA APRESENTA</p>
-          <h1>SEMANA DE<br /><strong>TECNOLOGIA</strong><br /><span>2025</span></h1>
+          <h1>SEMANA DE<br /><strong>TECNOLOGIA</strong><br /><span>2026</span></h1>
           <p className="hero-description">Educação que transforma. Tecnologia que conecta. Três dias para experimentar o futuro em movimento.</p>
           <div className="hero-actions">
             <Button variant="event" size="event" asChild><a href="#agenda">VER PROGRAMAÇÃO <ArrowDown /></a></Button>
-            <span><CalendarDays /> 17—19 NOV 2025</span>
+            <span><CalendarDays /> 14—16 NOV 2026</span>
           </div>
         </div>
         <div className="hero-visual">
           <div className="tech-rings" aria-hidden="true"><i /><i /><i /></div>
-          <img src={eventLab} alt="Estudantes participando de uma atividade de tecnologia" width={1200} height={800} />
+          <img src={facultyPhoto.url} alt="Fachada da unidade SENAI Sorocaba" width={980} height={652} />
           <div className="event-stamp">
             <strong>03</strong><span>DIAS DE<br />EXPERIÊNCIAS</span>
           </div>
@@ -145,16 +170,23 @@ function Index() {
       <section id="agenda" className="page-section">
         <div className="section-shell">
           <SectionHeading index="02">AGENDA DO <em>EVENTO</em></SectionHeading>
-          <div className="agenda-date"><CalendarDays /><span>SEGUNDA-FEIRA</span><strong>17 NOV</strong></div>
-          <div className="schedule-list">
-            {schedule.map((item) => (
-              <article key={item.title}>
-                <time>{item.time}</time>
-                <div><h3>{item.title}</h3><p>{item.text}</p><span><Users /> {item.speaker}</span><span><MapPin /> {item.place}</span></div>
-                <Button variant="outline" size="icon" asChild aria-label={`Inscrever-se em ${item.title}`}><a href="mailto:eventos@sesisorocaba.org.br?subject=Inscrição na Semana de Tecnologia"><ArrowUpRight /></a></Button>
-              </article>
-            ))}
-          </div>
+          {schedule.map((day, dayIndex) => (
+            <div key={day.date} className={dayIndex > 0 && !showFullSchedule ? "schedule-day schedule-day-hidden" : "schedule-day"}>
+              <div className="agenda-date"><CalendarDays /><span>{day.weekday}</span><strong>{day.date}</strong></div>
+              <div className="schedule-list">
+                {day.activities.map((item) => (
+                  <article key={item.title}>
+                    <time>{item.time}</time>
+                    <div><b className="activity-type">{item.type}</b><h3>{item.title}</h3><p>{item.text}</p><span><Users /> {item.speaker}</span><span><MapPin /> {item.place}</span></div>
+                    <Button variant="outline" className="signup-button" asChild aria-label={`Inscreva-se em ${item.title}`}><a href="mailto:eventos@sesisorocaba.org.br?subject=Inscrição na Semana de Tecnologia"><span>INSCREVA-SE</span><ArrowUpRight /></a></Button>
+                  </article>
+                ))}
+              </div>
+            </div>
+          ))}
+          <Button variant="event" size="event" className="schedule-toggle" onClick={() => setShowFullSchedule((current) => !current)} aria-expanded={showFullSchedule}>
+            {showFullSchedule ? <Minus /> : <Plus />} {showFullSchedule ? "VER MENOS" : "VER A AGENDA COMPLETA"}
+          </Button>
         </div>
       </section>
 
@@ -187,7 +219,7 @@ function Index() {
       </section>
 
       <footer>
-        <div><strong>SESI</strong><span>SEMANA DE TECNOLOGIA 2025</span></div>
+        <div><strong>SESI</strong><span>SEMANA DE TECNOLOGIA 2026</span></div>
         <p>EDUCAÇÃO QUE PREPARA PESSOAS PARA TRANSFORMAR O MUNDO.</p>
         <div className="footer-links"><Button variant="outline" size="icon" asChild><a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram /></a></Button><Button variant="outline" size="icon" asChild><a href="mailto:eventos@sesisorocaba.org.br" aria-label="E-mail"><Mail /></a></Button></div>
       </footer>
