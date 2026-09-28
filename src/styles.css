@@ -140,7 +140,7 @@ h1, h2, h3, p { margin-top: 0; }
 .schedule-list article div > span { display: inline-flex; gap: .4rem; align-items: center; margin: .8rem 1.2rem 0 0; font-size: .74rem; font-weight: 600; color: var(--muted-foreground); }
 .schedule-list article div > span svg { width: .85rem; color: var(--primary); }
 .signup-button { width: 2.75rem; min-width: 2.75rem; overflow: hidden; justify-content: flex-end; padding-inline: .75rem; transition: width 220ms ease, color 160ms ease, background-color 160ms ease; }
-.signup-button span { max-width: 0; opacity: 0; overflow: hidden; font-size: .72rem; font-weight: 700; transition: max-width 220ms ease, opacity 160ms ease; }
+.signup-button span { display: inline-block; max-width: 0; opacity: 0; overflow: hidden; font-size: .72rem; font-weight: 700; transition: max-width 220ms ease, opacity 160ms ease; }
 .signup-button:hover, .signup-button:focus-visible { width: 9.5rem; }
 .signup-button:hover span, .signup-button:focus-visible span { max-width: 7rem; opacity: 1; }
 .schedule-toggle { margin-top: 2rem; }
