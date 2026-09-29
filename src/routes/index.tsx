@@ -144,7 +144,6 @@ function Index() {
           </div>
         </div>
         <div className="hero-visual">
-          <div className="tech-rings" aria-hidden="true"><i /><i /><i /></div>
           <img src={facultyPhoto.url} alt="Fachada da unidade SENAI Sorocaba" width={980} height={652} />
           <div className="event-stamp">
             <strong>03</strong><span>DIAS DE<br />EXPERIÊNCIAS</span>
