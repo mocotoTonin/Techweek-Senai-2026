@@ -30,9 +30,9 @@ import facultyPhoto from "@/assets/faculdade-sorocaba.png.asset.json";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Semana de Tecnologia 2026 | SESI Sorocaba" },
-      { name: "description", content: "De 14 a 16 de novembro: três dias de palestras, minicursos e conexões na Semana de Tecnologia SESI Sorocaba." },
-      { property: "og:title", content: "Semana de Tecnologia 2026 | SESI Sorocaba" },
+      { title: "Semana de Tecnologia 2026 | SENAI Sorocaba" },
+      { name: "description", content: "De 14 a 16 de novembro: três dias de palestras, minicursos e conexões na Semana de Tecnologia SENAI Sorocaba." },
+      { property: "og:title", content: "Semana de Tecnologia 2026 | SENAI Sorocaba" },
       { property: "og:description", content: "Tecnologia, inovação e oportunidades para construir o futuro." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -88,7 +88,6 @@ function SectionHeading({ index, children }: { index: string; children: React.Re
     <div className="section-heading">
       <span>{index}</span>
       <h2>{children}</h2>
-      <div />
     </div>
   );
 }
@@ -99,7 +98,7 @@ function Index() {
   const [showFullSchedule, setShowFullSchedule] = useState(false);
 
   useEffect(() => {
-    const saved = window.localStorage.getItem("sesi-theme");
+    const saved = window.localStorage.getItem("senai-theme");
     const isDark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
     setDark(isDark);
     document.documentElement.classList.toggle("dark", isDark);
@@ -117,13 +116,13 @@ function Index() {
     const next = !dark;
     setDark(next);
     document.documentElement.classList.toggle("dark", next);
-    window.localStorage.setItem("sesi-theme", next ? "dark" : "light");
+    window.localStorage.setItem("senai-theme", next ? "dark" : "light");
   };
 
   return (
     <main className="bg-background text-foreground">
       <header className="site-header">
-        <a href="#inicio" className="brand" aria-label="SESI Sorocaba — início"><span>SESI</span><small>SOROCABA</small></a>
+        <a href="#inicio" className="brand" aria-label="SENAI Sorocaba — início"><span>SENAI</span><small>SOROCABA</small></a>
         <nav aria-label="Navegação principal">
           {nav.map(([label, id]) => <a key={id} href={`#${id}`}>{label}</a>)}
         </nav>
@@ -134,8 +133,7 @@ function Index() {
 
       <section id="inicio" className="hero-section">
         <div className="hero-copy">
-          <div className="status-line"><span /> INOVAÇÃO & FUTURO</div>
-          <p className="hero-kicker">SESI SOROCABA APRESENTA</p>
+          <p className="hero-kicker">SENAI SOROCABA APRESENTA</p>
           <h1>SEMANA DE<br /><strong>TECNOLOGIA</strong><br /><span>2026</span></h1>
           <p className="hero-description">Educação que transforma. Tecnologia que conecta. Três dias para experimentar o futuro em movimento.</p>
           <div className="hero-actions">
@@ -145,10 +143,6 @@ function Index() {
         </div>
         <div className="hero-visual">
           <img src={facultyPhoto.url} alt="Fachada da unidade SENAI Sorocaba" width={980} height={652} />
-          <div className="event-stamp">
-            <strong>03</strong><span>DIAS DE<br />EXPERIÊNCIAS</span>
-          </div>
-          <p><MapPin /> SESI SOROCABA · BRASIL</p>
         </div>
         <div className="hero-stats">
           <div><strong>03</strong><span>PALESTRAS</span></div>
@@ -185,7 +179,7 @@ function Index() {
                   <article key={item.title}>
                     <time>{item.time}</time>
                     <div><b className="activity-type">{item.type}</b><h3>{item.title}</h3><p>{item.text}</p><span><Users /> {item.speaker}</span><span><MapPin /> {item.place}</span></div>
-                    <Button variant="outline" className="signup-button" asChild aria-label={`Inscreva-se em ${item.title}`}><a href="mailto:eventos@sesisorocaba.org.br?subject=Inscrição na Semana de Tecnologia"><span>INSCREVA-SE</span><ArrowUpRight /></a></Button>
+                    <Button variant="event" size="event" asChild aria-label={`Inscreva-se em ${item.title}`}><a href="mailto:eventos@senaisorocaba.org.br?subject=Inscrição na Semana de Tecnologia"><span>INSCREVA-SE</span><ArrowUpRight /></a></Button>
                   </article>
                 ))}
               </div>
@@ -203,7 +197,7 @@ function Index() {
           <div className="speaker-grid">
             {speakers.map((speaker, index) => (
               <article key={speaker.name}>
-                <div className="speaker-photo"><img src={speaker.image} alt={`Retrato de ${speaker.name}`} loading="lazy" width={768} height={960} /><span>0{index + 1}</span></div>
+                <div className="speaker-photo"><img src={speaker.image} alt={`Retrato de ${speaker.name}`} loading="lazy" width={768} height={960} /></div>
                 <h3>{speaker.name}</h3><strong>{speaker.role}</strong><small>{speaker.company}</small><p>{speaker.bio}</p>
               </article>
             ))}
@@ -226,9 +220,9 @@ function Index() {
       </section>
 
       <footer>
-        <div><strong>SESI</strong><span>SEMANA DE TECNOLOGIA 2026</span></div>
+        <div><strong>SENAI</strong><span>SEMANA DE TECNOLOGIA 2026</span></div>
         <p>EDUCAÇÃO QUE PREPARA PESSOAS PARA TRANSFORMAR O MUNDO.</p>
-        <div className="footer-links"><Button variant="outline" size="icon" asChild><a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram /></a></Button><Button variant="outline" size="icon" asChild><a href="mailto:eventos@sesisorocaba.org.br" aria-label="E-mail"><Mail /></a></Button></div>
+        <div className="footer-links"><Button variant="outline" size="icon" asChild><a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram /></a></Button><Button variant="outline" size="icon" asChild><a href="mailto:eventos@senaisorocaba.org.br" aria-label="E-mail"><Mail /></a></Button></div>
       </footer>
     </main>
   );
