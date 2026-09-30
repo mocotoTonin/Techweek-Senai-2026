@@ -186,6 +186,6 @@ export default function HeroScene() {
         <directionalLight position={[-6, -4, -5]} intensity={0.5} color={muted} />
         <Core group={group} spin={spin} dragging={dragging} reduced={reduced} red={red} ink={ink} muted={muted} />
       </Canvas>
-ag    </div>
+    </div>
   );
 }
