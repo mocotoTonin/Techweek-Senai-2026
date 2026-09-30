@@ -26,6 +26,7 @@ import gabriel from "@/assets/speaker-gabriel.jpg";
 import bruno from "@/assets/speaker-bruno.jpg";
 import eric from "@/assets/speaker-eric.jpg";
 import { HeroVisual } from "@/components/HeroVisual";
+import { SiteBackground } from "@/components/SiteBackground";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -121,6 +122,7 @@ function Index() {
 
   return (
     <main className="bg-background text-foreground">
+      <SiteBackground />
       <header className="site-header">
         <a href="#inicio" className="brand" aria-label="SENAI Sorocaba — início"><span>SENAI</span><small>SOROCABA</small></a>
         <nav aria-label="Navegação principal">
@@ -144,12 +146,6 @@ function Index() {
         <div className="hero-visual">
           <HeroVisual />
           <span className="hero-3d-hint">ARRASTE PARA EXPLORAR</span>
-        </div>
-        <div className="hero-stats">
-          <div><strong>03</strong><span>PALESTRAS</span></div>
-          <div><strong>03</strong><span>ESPECIALISTAS</span></div>
-          <div><strong>100%</strong><span>CONHECIMENTO</span></div>
-          <div><strong>LIVRE</strong><span>PARA O PÚBLICO</span></div>
         </div>
       </section>
 
