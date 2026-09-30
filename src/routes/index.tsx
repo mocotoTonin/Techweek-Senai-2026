@@ -138,7 +138,7 @@ function Index() {
           <p className="hero-description">Educação que transforma. Tecnologia que conecta. Três dias para experimentar o futuro em movimento.</p>
           <div className="hero-actions">
             <Button variant="event" size="event" asChild><a href="#agenda">VER PROGRAMAÇÃO <ArrowDown /></a></Button>
-            <span><CalendarDays /> 14—16 NOV 2026</span>
+            <span><CalendarDays /> 14 A 16 NOV 2026</span>
           </div>
         </div>
         <div className="hero-visual">
