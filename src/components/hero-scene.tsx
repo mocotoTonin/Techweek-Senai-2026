@@ -6,13 +6,14 @@ const BASE_SPIN = { x: 0.07, y: 0.3 };
 
 function cssColor(name: string, fallback: string) {
   if (typeof window === "undefined") return fallback;
-  const probe = document.createElement("span");
-  probe.style.display = "none";
-  probe.style.color = `var(${name})`;
-  document.body.appendChild(probe);
-  const value = getComputedStyle(probe).color;
-  probe.remove();
-  return value || fallback;
+  const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  if (!value) return fallback;
+  const ctx = document.createElement("canvas").getContext("2d");
+  if (!ctx) return fallback;
+  ctx.fillStyle = "#000";
+  ctx.fillStyle = value;
+  const normalized = ctx.fillStyle;
+  return normalized.startsWith("#") || normalized.startsWith("rgb") ? normalized : fallback;
 }
 
 function useThemeColors() {
