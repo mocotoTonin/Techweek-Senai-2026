@@ -1,0 +1,5 @@
+- [x] Restaurar botão INSCREVA-SE com hover (seta diagonal)
+- [x] Cena 3D interativa no hero (arraste, cores do tema)
+- [x] Link do site 2025 no rodapé
+- [x] Galeria menor (max-width 900px)
+- [x] Limpeza CSS + build OK (claro/escuro verificados)

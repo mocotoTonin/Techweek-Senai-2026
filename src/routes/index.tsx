@@ -25,7 +25,7 @@ import eventWorkshop from "@/assets/sesi-event-workshop.jpg";
 import gabriel from "@/assets/speaker-gabriel.jpg";
 import bruno from "@/assets/speaker-bruno.jpg";
 import eric from "@/assets/speaker-eric.jpg";
-import facultyPhoto from "@/assets/faculdade-sorocaba.png.asset.json";
+import { HeroVisual } from "@/components/HeroVisual";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -138,11 +138,12 @@ function Index() {
           <p className="hero-description">Educação que transforma. Tecnologia que conecta. Três dias para experimentar o futuro em movimento.</p>
           <div className="hero-actions">
             <Button variant="event" size="event" asChild><a href="#agenda">VER PROGRAMAÇÃO <ArrowDown /></a></Button>
-            <span><CalendarDays /> 14—16 NOV 2026</span>
+            <span><CalendarDays /> 14 A 16 NOV 2026</span>
           </div>
         </div>
         <div className="hero-visual">
-          <img src={facultyPhoto.url} alt="Fachada da unidade SENAI Sorocaba" width={980} height={652} />
+          <HeroVisual />
+          <span className="hero-3d-hint">ARRASTE PARA EXPLORAR</span>
         </div>
         <div className="hero-stats">
           <div><strong>03</strong><span>PALESTRAS</span></div>
@@ -179,7 +180,7 @@ function Index() {
                   <article key={item.title}>
                     <time>{item.time}</time>
                     <div><b className="activity-type">{item.type}</b><h3>{item.title}</h3><p>{item.text}</p><span><Users /> {item.speaker}</span><span><MapPin /> {item.place}</span></div>
-                    <Button variant="event" size="event" asChild aria-label={`Inscreva-se em ${item.title}`}><a href="mailto:eventos@senaisorocaba.org.br?subject=Inscrição na Semana de Tecnologia"><span>INSCREVA-SE</span><ArrowUpRight /></a></Button>
+                    <Button variant="outline" className="signup-button" asChild aria-label={`Inscreva-se em ${item.title}`}><a href="mailto:eventos@senaisorocaba.org.br?subject=Inscrição na Semana de Tecnologia"><span>INSCREVA-SE</span><ArrowUpRight /></a></Button>
                   </article>
                 ))}
               </div>
@@ -223,6 +224,7 @@ function Index() {
         <div><strong>SENAI</strong><span>SEMANA DE TECNOLOGIA 2026</span></div>
         <p>EDUCAÇÃO QUE PREPARA PESSOAS PARA TRANSFORMAR O MUNDO.</p>
         <div className="footer-links"><Button variant="outline" size="icon" asChild><a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram /></a></Button><Button variant="outline" size="icon" asChild><a href="mailto:eventos@senaisorocaba.org.br" aria-label="E-mail"><Mail /></a></Button></div>
+        <a className="past-site" href="https://techweek-senai-sorocaba.vercel.app/" target="_blank" rel="noreferrer">SITE DA EDIÇÃO ANTERIOR · 2025 <ArrowUpRight /></a>
       </footer>
     </main>
   );
