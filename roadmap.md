@@ -3,3 +3,7 @@
 - [x] Link do site 2025 no rodapé
 - [x] Galeria menor (max-width 900px)
 - [x] Limpeza CSS + build OK (claro/escuro verificados)
+- [x] Remover a faixa de estatísticas abaixo da seção principal
+- [ ] Levar todos os botões INSCREVA-SE para a página oficial do Even3
+- [ ] Aplicar partículas e ícones tecnológicos cinza/vermelhos ao fundo de todo o site
+- [ ] Verificar fundo, temas e inscrição no navegador
