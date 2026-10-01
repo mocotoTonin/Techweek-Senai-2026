@@ -166,18 +166,22 @@ function Field({ red, ink, muted }: { red: string; ink: string; muted: string })
           </mesh>
         ))}
       </group>
-      {icons.map((icon, i) => (
-        <sprite
-          key={`icon-${i}`}
-          position={[icon.x, icon.y, icon.z]}
-          scale={[icon.size, icon.size, 1]}
-          ref={(sprite) => {
-            iconRefs.current[i] = sprite;
-          }}
-        >
-          <spriteMaterial map={iconTextures[icon.kind]} transparent opacity={icon.kind === 1 ? 0.22 : 0.13} depthWrite={false} />
-        </sprite>
-      ))}
+      {icons.map((icon, i) => {
+        const texture = iconTextures[icon.kind];
+        if (!texture) return null;
+        return (
+          <sprite
+            key={`icon-${i}`}
+            position={[icon.x, icon.y, icon.z]}
+            scale={[icon.size, icon.size, 1]}
+            ref={(sprite) => {
+              iconRefs.current[i] = sprite;
+            }}
+          >
+            <spriteMaterial map={texture} transparent opacity={icon.kind === 1 ? 0.22 : 0.13} depthWrite={false} />
+          </sprite>
+        );
+      })}
     </>
   );
 }
