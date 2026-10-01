@@ -69,6 +69,57 @@ function Field({ red, ink, muted }: { red: string; ink: string; muted: string })
 
   const nodeRefs = useRef<(THREE.Mesh | null)[]>([]);
 
+  const iconTextures = useMemo(() => {
+    const drawIcon = (kind: number, color: string) => {
+      const canvas = document.createElement("canvas");
+      canvas.width = 128;
+      canvas.height = 128;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return new THREE.CanvasTexture(canvas);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 7;
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      if (kind === 0) {
+        ctx.strokeRect(32, 32, 64, 64);
+        for (let p = 40; p <= 88; p += 16) {
+          ctx.beginPath(); ctx.moveTo(p, 20); ctx.lineTo(p, 32); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(p, 96); ctx.lineTo(p, 108); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(20, p); ctx.lineTo(32, p); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(96, p); ctx.lineTo(108, p); ctx.stroke();
+        }
+        ctx.strokeRect(48, 48, 32, 32);
+      } else if (kind === 1) {
+        ctx.beginPath(); ctx.moveTo(48, 34); ctx.lineTo(25, 64); ctx.lineTo(48, 94); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(80, 34); ctx.lineTo(103, 64); ctx.lineTo(80, 94); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(71, 25); ctx.lineTo(57, 103); ctx.stroke();
+      } else {
+        ctx.beginPath(); ctx.arc(64, 64, 26, 0, Math.PI * 2); ctx.stroke();
+        ctx.beginPath(); ctx.arc(64, 64, 8, 0, Math.PI * 2); ctx.stroke();
+        for (let a = 0; a < Math.PI * 2; a += Math.PI / 4) {
+          ctx.beginPath(); ctx.moveTo(64 + Math.cos(a) * 27, 64 + Math.sin(a) * 27); ctx.lineTo(64 + Math.cos(a) * 43, 64 + Math.sin(a) * 43); ctx.stroke();
+        }
+      }
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.colorSpace = THREE.SRGBColorSpace;
+      return texture;
+    };
+    return [drawIcon(0, muted), drawIcon(1, red), drawIcon(2, ink)];
+  }, [ink, muted, red]);
+
+  const icons = useMemo(
+    () => Array.from({ length: 22 }, (_, i) => ({
+      x: (Math.random() - 0.5) * 28,
+      y: (Math.random() - 0.5) * 17,
+      z: -2 - Math.random() * 7,
+      size: 0.45 + Math.random() * 0.55,
+      kind: i % 3,
+      phase: i * 0.91,
+    })),
+    []
+  );
+  const iconRefs = useRef<(THREE.Sprite | null)[]>([]);
+
   useFrame(({ clock }, rawDelta) => {
     const delta = Math.min(rawDelta, 0.05);
     if (reduced.current) return;
@@ -84,6 +135,12 @@ function Field({ red, ink, muted }: { red: string; ink: string; muted: string })
       m.position.y = n.y + Math.sin(t * n.speed + n.phase) * 0.7;
       m.rotation.x += delta * 0.4;
       m.rotation.y += delta * 0.3;
+    });
+    icons.forEach((icon, i) => {
+      const sprite = iconRefs.current[i];
+      if (!sprite) return;
+      sprite.position.y = icon.y + Math.sin(t * 0.12 + icon.phase) * 0.35;
+      sprite.material.rotation = Math.sin(t * 0.08 + icon.phase) * 0.12;
     });
   });
 
@@ -109,6 +166,18 @@ function Field({ red, ink, muted }: { red: string; ink: string; muted: string })
           </mesh>
         ))}
       </group>
+      {icons.map((icon, i) => (
+        <sprite
+          key={`icon-${i}`}
+          position={[icon.x, icon.y, icon.z]}
+          scale={[icon.size, icon.size, 1]}
+          ref={(sprite) => {
+            iconRefs.current[i] = sprite;
+          }}
+        >
+          <spriteMaterial map={iconTextures[icon.kind]} transparent opacity={icon.kind === 1 ? 0.22 : 0.13} depthWrite={false} />
+        </sprite>
+      ))}
     </>
   );
 }
