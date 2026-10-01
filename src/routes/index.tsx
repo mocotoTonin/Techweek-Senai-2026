@@ -8,14 +8,14 @@ import {
   Instagram,
   Mail,
   MapPin,
-  Moon,
   Network,
-  Sun,
   Users,
   Wrench,
   Lightbulb,
   Plus,
   Minus,
+  Menu,
+  X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -25,8 +25,6 @@ import eventWorkshop from "@/assets/sesi-event-workshop.jpg";
 import gabriel from "@/assets/speaker-gabriel.jpg";
 import bruno from "@/assets/speaker-bruno.jpg";
 import eric from "@/assets/speaker-eric.jpg";
-import { HeroVisual } from "@/components/HeroVisual";
-import { SiteBackground } from "@/components/SiteBackground";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -95,14 +93,12 @@ function SectionHeading({ index, children }: { index: string; children: React.Re
 
 function Index() {
   const [slide, setSlide] = useState(0);
-  const [dark, setDark] = useState(true);
   const [showFullSchedule, setShowFullSchedule] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const saved = window.localStorage.getItem("senai-theme");
-    const isDark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setDark(isDark);
-    document.documentElement.classList.toggle("dark", isDark);
+    document.documentElement.classList.add("dark");
+    document.documentElement.style.colorScheme = "dark";
   }, []);
 
   useEffect(() => {
@@ -113,23 +109,15 @@ function Index() {
     return () => window.clearInterval(interval);
   }, []);
 
-  const toggleTheme = () => {
-    const next = !dark;
-    setDark(next);
-    document.documentElement.classList.toggle("dark", next);
-    window.localStorage.setItem("senai-theme", next ? "dark" : "light");
-  };
-
   return (
     <main className="bg-background text-foreground">
-      <SiteBackground />
       <header className="site-header">
         <a href="#inicio" className="brand" aria-label="SENAI Sorocaba — início"><span>SENAI</span><small>SOROCABA</small></a>
-        <nav aria-label="Navegação principal">
-          {nav.map(([label, id]) => <a key={id} href={`#${id}`}>{label}</a>)}
+        <nav className={menuOpen ? "nav-open" : ""} aria-label="Navegação principal">
+          {nav.map(([label, id]) => <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)}>{label}</a>)}
         </nav>
-        <Button variant="ghost" size="icon" className="theme-toggle" onClick={toggleTheme} aria-label={dark ? "Ativar modo claro" : "Ativar modo escuro"} title={dark ? "Modo claro" : "Modo escuro"}>
-          {dark ? <Sun /> : <Moon />}
+        <Button variant="ghost" size="icon" className="menu-toggle" onClick={() => setMenuOpen((current) => !current)} aria-label={menuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={menuOpen}>
+          {menuOpen ? <X /> : <Menu />}
         </Button>
       </header>
 
@@ -142,10 +130,6 @@ function Index() {
             <Button variant="event" size="event" asChild><a href="#agenda">VER PROGRAMAÇÃO <ArrowDown /></a></Button>
             <span><CalendarDays /> 14 A 16 NOV 2026</span>
           </div>
-        </div>
-        <div className="hero-visual">
-          <HeroVisual />
-          <span className="hero-3d-hint">ARRASTE PARA EXPLORAR</span>
         </div>
       </section>
 
