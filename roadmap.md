@@ -7,3 +7,7 @@
 - [x] Levar todos os botões INSCREVA-SE para a página oficial do Even3
 - [x] Aplicar partículas e ícones tecnológicos cinza/vermelhos ao fundo de todo o site
 - [x] Verificar fundo, temas e inscrição no navegador
+- [ ] Remover os elementos 3D e restaurar o fundo escuro simples
+- [ ] Centralizar a abertura e manter somente o tema escuro
+- [ ] Deixar o cabeçalho no topo, sem acompanhar a rolagem
+- [ ] Ajustar e verificar toda a página em celular, tablet e desktop

@@ -10,4 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep the event as a single static landing page with in-page section navigation; this matches the reference experience and requires no backend.
-- Keep light and dark themes on one fixed, continuous 3D technology-particle background; dark mode uses #212121 and SENAI red provides emphasis.
+- Keep the event exclusively dark on one continuous #212121 background with SENAI red emphasis; the header stays at the page top and scrolls away with the content.
