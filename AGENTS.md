@@ -10,4 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep the event as a single static landing page with in-page section navigation; this matches the reference experience and requires no backend.
-- Keep light and dark themes on identical continuous section backgrounds; dark mode uses #212121 and SESI red provides emphasis.
+- Keep light and dark themes on one fixed, continuous 3D technology-particle background; dark mode uses #212121 and SENAI red provides emphasis.

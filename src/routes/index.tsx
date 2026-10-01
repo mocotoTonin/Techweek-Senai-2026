@@ -61,14 +61,14 @@ const schedule = [
     weekday: "DOMINGO", date: "15 NOV",
     activities: [
       { time: "09:00", type: "PALESTRA", title: "Cloud e arquitetura de dados para soluções escaláveis", speaker: "Gabriel Faria e Silva · Gestor de Projetos", place: "Auditório · Piso superior", text: "Como transformar desafios complexos em produtos digitais seguros, simples e preparados para crescer." },
-      { time: "13:30", type: "MINICURSO", title: "Inteligência artificial aplicada: do prompt ao protótipo", speaker: "Equipe de Tecnologia SESI · Facilitadores", place: "Laboratório de informática", text: "Uma experiência prática para criar, testar e aprimorar soluções com ferramentas de inteligência artificial." },
+      { time: "13:30", type: "MINICURSO", title: "Inteligência artificial aplicada: do prompt ao protótipo", speaker: "Equipe de Tecnologia SENAI · Facilitadores", place: "Laboratório de informática", text: "Uma experiência prática para criar, testar e aprimorar soluções com ferramentas de inteligência artificial." },
       { time: "16:00", type: "PALESTRA", title: "Saúde mental e liderança na era digital", speaker: "Bruno Souza · Psicólogo e consultor", place: "Auditório · Piso superior", text: "Estratégias para construir relações de trabalho mais conscientes, humanas e sustentáveis." },
     ],
   },
   {
     weekday: "SEGUNDA-FEIRA", date: "16 NOV",
     activities: [
-      { time: "09:00", type: "MINICURSO", title: "Prototipagem rápida com cultura maker", speaker: "Equipe Maker SESI · Instrutores", place: "Sala maker · Piso térreo", text: "Da ideia ao primeiro protótipo com ferramentas digitais, colaboração e experimentação prática." },
+      { time: "09:00", type: "MINICURSO", title: "Prototipagem rápida com cultura maker", speaker: "Equipe Maker SENAI · Instrutores", place: "Sala maker · Piso térreo", text: "Da ideia ao primeiro protótipo com ferramentas digitais, colaboração e experimentação prática." },
       { time: "14:00", type: "PALESTRA", title: "Cibersegurança para pessoas e organizações", speaker: "Gabriel Faria e Silva · Gestor de Projetos", place: "Auditório · Piso superior", text: "Hábitos, riscos e decisões essenciais para proteger dados e operações em um mundo conectado." },
       { time: "17:00", type: "PALESTRA", title: "Atitude, propósito e alta performance", speaker: "Eric Garcia · Palestrante e treinador", place: "Auditório · Piso superior", text: "Um encerramento sobre escolhas, comportamento e o papel de cada pessoa na construção do futuro." },
     ],
@@ -176,7 +176,7 @@ function Index() {
                   <article key={item.title}>
                     <time>{item.time}</time>
                     <div><b className="activity-type">{item.type}</b><h3>{item.title}</h3><p>{item.text}</p><span><Users /> {item.speaker}</span><span><MapPin /> {item.place}</span></div>
-                    <Button variant="outline" className="signup-button" asChild aria-label={`Inscreva-se em ${item.title}`}><a href="mailto:eventos@senaisorocaba.org.br?subject=Inscrição na Semana de Tecnologia"><span>INSCREVA-SE</span><ArrowUpRight /></a></Button>
+                    <Button variant="outline" className="signup-button" asChild aria-label={`Inscreva-se em ${item.title}`}><a href="https://www.even3.com.br/semana-de-tecnologia-faculdade-senai-sorocaba-2026-789762" target="_blank" rel="noreferrer"><span>INSCREVA-SE</span><ArrowUpRight /></a></Button>
                   </article>
                 ))}
               </div>
@@ -192,7 +192,7 @@ function Index() {
         <div className="section-shell">
           <SectionHeading index="03">CONHEÇA OS <em>PALESTRANTES</em></SectionHeading>
           <div className="speaker-grid">
-            {speakers.map((speaker, index) => (
+            {speakers.map((speaker) => (
               <article key={speaker.name}>
                 <div className="speaker-photo"><img src={speaker.image} alt={`Retrato de ${speaker.name}`} loading="lazy" width={768} height={960} /></div>
                 <h3>{speaker.name}</h3><strong>{speaker.role}</strong><small>{speaker.company}</small><p>{speaker.bio}</p>
