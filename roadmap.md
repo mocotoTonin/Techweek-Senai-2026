@@ -11,3 +11,6 @@
 - [ ] Centralizar a abertura e manter somente o tema escuro
 - [ ] Deixar o cabeçalho no topo, sem acompanhar a rolagem
 - [ ] Ajustar e verificar toda a página em celular, tablet e desktop
+- [ ] Usar a foto enviada como fundo escurecido da abertura e do cabeçalho
+- [ ] Criar transição gradual da foto para o fundo escuro da segunda seção
+- [ ] Atualizar todos os botões de inscrição para o novo endereço do Even3
