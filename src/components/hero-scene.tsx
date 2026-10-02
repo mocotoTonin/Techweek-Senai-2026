@@ -60,7 +60,7 @@ function Core({ group, spin, dragging, reduced, red, ink, muted }: CoreProps) {
         size: 0.07 + (i % 2) * 0.04,
         y: Math.sin(i * 1.7) * 0.55,
       })),
-    []
+    [],
   );
 
   const dust = useMemo(() => {
@@ -95,7 +95,11 @@ function Core({ group, spin, dragging, reduced, red, ink, muted }: CoreProps) {
       const m = satRefs.current[i];
       if (!m) return;
       const a = s.angle + t * s.speed;
-      m.position.set(Math.cos(a) * s.radius, s.y + Math.sin(t * 0.8 + i) * 0.12, Math.sin(a) * s.radius);
+      m.position.set(
+        Math.cos(a) * s.radius,
+        s.y + Math.sin(t * 0.8 + i) * 0.12,
+        Math.sin(a) * s.radius,
+      );
       m.rotation.x += delta * 0.8;
       m.rotation.y += delta * 0.6;
     });
@@ -128,7 +132,12 @@ function Core({ group, spin, dragging, reduced, red, ink, muted }: CoreProps) {
           }}
         >
           <octahedronGeometry args={[s.size]} />
-          <meshStandardMaterial color={i % 2 ? ink : red} flatShading roughness={0.35} metalness={0.3} />
+          <meshStandardMaterial
+            color={i % 2 ? ink : red}
+            flatShading
+            roughness={0.35}
+            metalness={0.3}
+          />
         </mesh>
       ))}
       <points ref={dustSpin}>
@@ -181,11 +190,23 @@ export default function HeroScene() {
         dragging.current = false;
       }}
     >
-      <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 7.6], fov: 42 }} gl={{ antialias: true, alpha: true }}>
+      <Canvas
+        dpr={[1, 2]}
+        camera={{ position: [0, 0, 7.6], fov: 42 }}
+        gl={{ antialias: true, alpha: true }}
+      >
         <ambientLight intensity={0.55} />
         <directionalLight position={[6, 8, 6]} intensity={1.5} />
         <directionalLight position={[-6, -4, -5]} intensity={0.5} color={muted} />
-        <Core group={group} spin={spin} dragging={dragging} reduced={reduced} red={red} ink={ink} muted={muted} />
+        <Core
+          group={group}
+          spin={spin}
+          dragging={dragging}
+          reduced={reduced}
+          red={red}
+          ink={ink}
+          muted={muted}
+        />
       </Canvas>
     </div>
   );
