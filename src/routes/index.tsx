@@ -25,6 +25,7 @@ import eventWorkshop from "@/assets/sesi-event-workshop.jpg";
 import gabriel from "@/assets/speaker-gabriel.jpg";
 import bruno from "@/assets/speaker-bruno.jpg";
 import eric from "@/assets/speaker-eric.jpg";
+import facultyPhoto from "@/assets/senai-sorocaba-fachada.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -111,27 +112,29 @@ function Index() {
 
   return (
     <main className="bg-background text-foreground">
-      <header className="site-header">
-        <a href="#inicio" className="brand" aria-label="SENAI Sorocaba — início"><span>SENAI</span><small>SOROCABA</small></a>
-        <nav className={menuOpen ? "nav-open" : ""} aria-label="Navegação principal">
-          {nav.map(([label, id]) => <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)}>{label}</a>)}
-        </nav>
-        <Button variant="ghost" size="icon" className="menu-toggle" onClick={() => setMenuOpen((current) => !current)} aria-label={menuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={menuOpen}>
-          {menuOpen ? <X /> : <Menu />}
-        </Button>
-      </header>
+      <div className="intro-shell" style={{ "--hero-image": `url(${facultyPhoto.url})` } as React.CSSProperties}>
+        <header className="site-header">
+          <a href="#inicio" className="brand" aria-label="SENAI Sorocaba — início"><span>SENAI</span><small>SOROCABA</small></a>
+          <nav className={menuOpen ? "nav-open" : ""} aria-label="Navegação principal">
+            {nav.map(([label, id]) => <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)}>{label}</a>)}
+          </nav>
+          <Button variant="ghost" size="icon" className="menu-toggle" onClick={() => setMenuOpen((current) => !current)} aria-label={menuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={menuOpen}>
+            {menuOpen ? <X /> : <Menu />}
+          </Button>
+        </header>
 
-      <section id="inicio" className="hero-section">
-        <div className="hero-copy">
-          <p className="hero-kicker">SENAI SOROCABA APRESENTA</p>
-          <h1>SEMANA DE<br /><strong>TECNOLOGIA</strong><br /><span>2026</span></h1>
-          <p className="hero-description">Educação que transforma. Tecnologia que conecta. Três dias para experimentar o futuro em movimento.</p>
-          <div className="hero-actions">
-            <Button variant="event" size="event" asChild><a href="#agenda">VER PROGRAMAÇÃO <ArrowDown /></a></Button>
-            <span><CalendarDays /> 14 A 16 NOV 2026</span>
+        <section id="inicio" className="hero-section">
+          <div className="hero-copy">
+            <p className="hero-kicker">SENAI SOROCABA APRESENTA</p>
+            <h1>SEMANA DE<br /><strong>TECNOLOGIA</strong><br /><span>2026</span></h1>
+            <p className="hero-description">Educação que transforma. Tecnologia que conecta. Três dias para experimentar o futuro em movimento.</p>
+            <div className="hero-actions">
+              <Button variant="event" size="event" asChild><a href="#agenda">VER PROGRAMAÇÃO <ArrowDown /></a></Button>
+              <span><CalendarDays /> 14 A 16 NOV 2026</span>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       <section id="sobre" className="page-section">
         <div className="section-shell">
@@ -160,7 +163,7 @@ function Index() {
                   <article key={item.title}>
                     <time>{item.time}</time>
                     <div><b className="activity-type">{item.type}</b><h3>{item.title}</h3><p>{item.text}</p><span><Users /> {item.speaker}</span><span><MapPin /> {item.place}</span></div>
-                    <Button variant="outline" className="signup-button" asChild aria-label={`Inscreva-se em ${item.title}`}><a href="https://www.even3.com.br/semana-de-tecnologia-faculdade-senai-sorocaba-2026-789762" target="_blank" rel="noreferrer"><span>INSCREVA-SE</span><ArrowUpRight /></a></Button>
+                    <Button variant="outline" className="signup-button" asChild aria-label={`Inscreva-se em ${item.title}`}><a href="https://www.even3.com.br/semana-de-tecnologia-faculdade-senai-sorocaba-789762/" target="_blank" rel="noreferrer"><span>INSCREVA-SE</span><ArrowUpRight /></a></Button>
                   </article>
                 ))}
               </div>

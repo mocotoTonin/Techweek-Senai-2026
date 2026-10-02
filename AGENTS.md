@@ -10,4 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep the event as a single static landing page with in-page section navigation; this matches the reference experience and requires no backend.
-- Keep the event exclusively dark on one continuous #212121 background with SENAI red emphasis; the header stays at the page top and scrolls away with the content.
+- Keep the event exclusively dark with SENAI red emphasis; use the SENAI Sorocaba facade across the header and opening, fading into the continuous #212121 background, while the header scrolls away with the page.
