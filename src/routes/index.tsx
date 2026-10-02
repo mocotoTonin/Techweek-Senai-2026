@@ -26,12 +26,13 @@ import gabriel from "@/assets/speaker-gabriel.jpg";
 import bruno from "@/assets/speaker-bruno.jpg";
 import eric from "@/assets/speaker-eric.jpg";
 import facultyPhoto from "@/assets/senai-sorocaba-fachada.png.asset.json";
+import jonathanPhoto from "@/assets/jonathan-oliveira-bergamo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Semana de Tecnologia 2026 | SENAI Sorocaba" },
-      { name: "description", content: "De 14 a 16 de novembro: três dias de palestras, minicursos e conexões na Semana de Tecnologia SENAI Sorocaba." },
+      { name: "description", content: "De 14 a 16 de outubro: três dias de palestras, minicursos e conexões na Semana de Tecnologia SENAI Sorocaba." },
       { property: "og:title", content: "Semana de Tecnologia 2026 | SENAI Sorocaba" },
       { property: "og:description", content: "Tecnologia, inovação e oportunidades para construir o futuro." },
       { property: "og:type", content: "website" },
@@ -49,32 +50,30 @@ const highlights = [
 
 const schedule = [
   {
-    weekday: "SÁBADO", date: "14 NOV",
+    weekday: "QUARTA-FEIRA", date: "14 OUT",
     activities: [
-      { time: "09:00", type: "PALESTRA", title: "Comunicação que transforma: a arte da oratória no mundo técnico", speaker: "Jorge Sabino · Consultor em performance", place: "Auditório · Piso superior", text: "Clareza, confiança e presença para comunicar ideias técnicas que realmente movimentam pessoas." },
-      { time: "14:00", type: "PALESTRA", title: "Indústria 4.0: excelência, arquitetura e inteligência artificial", speaker: "Rodrigo Ferreira · Especialista em inovação", place: "Laboratório de tecnologia", text: "Aplicações práticas de automação e inteligência artificial para a indústria conectada." },
-      { time: "16:30", type: "MINICURSO", title: "Primeiros passos em automação com n8n", speaker: "David Vieira e equipe · Analistas de dados", place: "Sala maker · Piso térreo", text: "Construa um fluxo simples e conheça os conceitos essenciais da automação." },
+      { time: "19:30 — 20:30", type: "PALESTRA", title: "Comunicação que transforma: a arte da oratória no mundo técnico", speaker: "Jorge Sabino · Consultor em performance", place: "Auditório · Piso superior", text: "Clareza, confiança e presença para comunicar ideias técnicas que realmente movimentam pessoas." },
+      { time: "21:00 — 22:00", type: "PALESTRA", title: "Indústria 4.0: excelência, arquitetura e inteligência artificial", speaker: "Rodrigo Ferreira · Especialista em inovação", place: "Laboratório de tecnologia", text: "Aplicações práticas de automação e inteligência artificial para a indústria conectada." },
     ],
   },
   {
-    weekday: "DOMINGO", date: "15 NOV",
+    weekday: "QUINTA-FEIRA", date: "15 OUT",
     activities: [
-      { time: "09:00", type: "PALESTRA", title: "Cloud e arquitetura de dados para soluções escaláveis", speaker: "Gabriel Faria e Silva · Gestor de Projetos", place: "Auditório · Piso superior", text: "Como transformar desafios complexos em produtos digitais seguros, simples e preparados para crescer." },
-      { time: "13:30", type: "MINICURSO", title: "Inteligência artificial aplicada: do prompt ao protótipo", speaker: "Equipe de Tecnologia SENAI · Facilitadores", place: "Laboratório de informática", text: "Uma experiência prática para criar, testar e aprimorar soluções com ferramentas de inteligência artificial." },
-      { time: "16:00", type: "PALESTRA", title: "Saúde mental e liderança na era digital", speaker: "Bruno Souza · Psicólogo e consultor", place: "Auditório · Piso superior", text: "Estratégias para construir relações de trabalho mais conscientes, humanas e sustentáveis." },
+      { time: "19:30 — 20:30", type: "PALESTRA", title: "Internacionalização em TI", speaker: "Jonathan Oliveira Bergamo · Engenheiro de Software", place: "Auditório · Piso superior", text: "Guia prático para profissionais brasileiros ingressarem no mercado global de tecnologia, explorando preparação técnica, inglês, contratação remota e trabalho internacional." },
+      { time: "21:00 — 22:00", type: "PALESTRA", title: "Saúde mental e liderança na era digital", speaker: "Bruno Souza · Psicólogo e consultor", place: "Auditório · Piso superior", text: "Estratégias para construir relações de trabalho mais conscientes, humanas e sustentáveis." },
     ],
   },
   {
-    weekday: "SEGUNDA-FEIRA", date: "16 NOV",
+    weekday: "SEXTA-FEIRA", date: "16 OUT",
     activities: [
-      { time: "09:00", type: "MINICURSO", title: "Prototipagem rápida com cultura maker", speaker: "Equipe Maker SENAI · Instrutores", place: "Sala maker · Piso térreo", text: "Da ideia ao primeiro protótipo com ferramentas digitais, colaboração e experimentação prática." },
-      { time: "14:00", type: "PALESTRA", title: "Cibersegurança para pessoas e organizações", speaker: "Gabriel Faria e Silva · Gestor de Projetos", place: "Auditório · Piso superior", text: "Hábitos, riscos e decisões essenciais para proteger dados e operações em um mundo conectado." },
-      { time: "17:00", type: "PALESTRA", title: "Atitude, propósito e alta performance", speaker: "Eric Garcia · Palestrante e treinador", place: "Auditório · Piso superior", text: "Um encerramento sobre escolhas, comportamento e o papel de cada pessoa na construção do futuro." },
+      { time: "19:30 — 20:30", type: "PALESTRA", title: "Cibersegurança para pessoas e organizações", speaker: "Gabriel Faria e Silva · Gestor de Projetos", place: "Auditório · Piso superior", text: "Hábitos, riscos e decisões essenciais para proteger dados e operações em um mundo conectado." },
+      { time: "21:00 — 22:00", type: "PALESTRA", title: "Atitude, propósito e alta performance", speaker: "Eric Garcia · Palestrante e treinador", place: "Auditório · Piso superior", text: "Um encerramento sobre escolhas, comportamento e o papel de cada pessoa na construção do futuro." },
     ],
   },
 ];
 
 const speakers = [
+  { image: jonathanPhoto.url, name: "Jonathan Oliveira Bergamo", role: "Engenheiro de Software", company: "Natoora", bio: "Engenheiro de Software Full-Stack com experiência internacional, especializado no desenvolvimento de soluções web e mobile para o mercado global de tecnologia." },
   { image: gabriel, name: "Gabriel Faria e Silva", role: "Gestor de Projetos", company: "Cyber Horizon Group", bio: "Especialista em cloud e arquitetura de dados, transforma desafios complexos em soluções simples e escaláveis." },
   { image: bruno, name: "Bruno Souza", role: "Psicólogo e consultor", company: "Consultoria em Desenvolvimento Humano", bio: "Atua com saúde mental, liderança e desenvolvimento humano para ambientes de trabalho mais conscientes." },
   { image: eric, name: "Eric Garcia", role: "Palestrante e treinador", company: "Desenvolvimento Comportamental", bio: "Especialista em comunicação, atitude e alta performance, conectando propósito a resultados sustentáveis." },
@@ -130,7 +129,7 @@ function Index() {
             <p className="hero-description">Educação que transforma. Tecnologia que conecta. Três dias para experimentar o futuro em movimento.</p>
             <div className="hero-actions">
               <Button variant="event" size="event" asChild><a href="#agenda">VER PROGRAMAÇÃO <ArrowDown /></a></Button>
-              <span><CalendarDays /> 14 A 16 NOV 2026</span>
+              <span><CalendarDays /> 14 A 16 OUT 2026</span>
             </div>
           </div>
         </section>
