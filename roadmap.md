@@ -15,8 +15,8 @@
 - [x] Criar transição gradual da foto para o fundo escuro da segunda seção
 - [x] Atualizar todos os botões de inscrição para o novo endereço do Even3
 
-- [ ] Remover a linha entre a abertura e a segunda seção
-- [ ] Reduzir o corte e melhorar a apresentação da imagem principal
-- [ ] Adicionar Jonathan aos palestrantes e à agenda de 15/10
-- [ ] Reorganizar a agenda para dois horários em cada um dos três dias
+- [x] Remover a linha entre a abertura e a segunda seção
+- [x] Reduzir o corte e melhorar a apresentação da imagem principal
+- [x] Adicionar Jonathan aos palestrantes e à agenda de 15/10
+- [x] Reorganizar a agenda para dois horários em cada um dos três dias
 - [ ] Verificar a página completa após as alterações
