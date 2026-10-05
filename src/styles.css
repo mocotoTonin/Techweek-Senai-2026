@@ -99,6 +99,8 @@ h1, h2, h3, p { margin-top: 0; }
 .agenda-date strong { font-family: var(--font-display); font-size: 1.8rem; font-weight: 400; }
 .schedule-day + .schedule-day { margin-top: 4rem; }
 .schedule-day-hidden { display: none; }
+.schedule-track + .schedule-track { margin-top: 3rem; }
+.track-label { display: block; margin-bottom: .8rem; color: var(--primary); font-size: .82rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
 .schedule-list { border-top: 1px solid var(--border); }
 .schedule-list article { display: grid; grid-template-columns: 170px minmax(0, 1fr) auto; gap: 2rem; align-items: start; padding: 2rem 0; border-bottom: 1px solid var(--border); }
 .schedule-list time { font-family: var(--font-display); color: var(--primary); font-size: 1.8rem; }

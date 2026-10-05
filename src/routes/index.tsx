@@ -193,15 +193,20 @@ function Index() {
           {schedule.map((day, dayIndex) => (
             <div key={day.date} className={dayIndex > 0 && !showFullSchedule ? "schedule-day schedule-day-hidden" : "schedule-day"}>
               <div className="agenda-date"><CalendarDays /><span>{day.weekday}</span><strong>{day.date}</strong></div>
-              <div className="schedule-list">
-                {day.activities.map((item) => (
-                  <article key={item.title}>
-                    <time>{item.time}</time>
-                    <div><b className="activity-type">{item.type}</b><h3>{item.title}</h3><p>{item.text}</p><span><Users /> {item.speaker}</span><span><MapPin /> {item.place}</span></div>
-                    <Button variant="outline" className="signup-button" asChild aria-label={`Inscreva-se em ${item.title}`}><a href="https://www.even3.com.br/semana-de-tecnologia-faculdade-senai-sorocaba-789762/" target="_blank" rel="noreferrer"><span>INSCREVA-SE</span><ArrowUpRight /></a></Button>
-                  </article>
-                ))}
-              </div>
+              {day.tracks.map((track) => (
+                <div key={track.category} className="schedule-track">
+                  <b className="track-label">{track.category}</b>
+                  <div className="schedule-list">
+                    {track.activities.map((item) => (
+                      <article key={item.title}>
+                        <time>{item.time}</time>
+                        <div><b className="activity-type">{item.type}</b><h3>{item.title}</h3><p>{item.text}</p><span><Users /> {item.speaker}</span><span><MapPin /> {item.place}</span></div>
+                        <Button variant="outline" className="signup-button" asChild aria-label={`Inscreva-se em ${item.title}`}><a href="https://www.even3.com.br/semana-de-tecnologia-faculdade-senai-sorocaba-789762/" target="_blank" rel="noreferrer"><span>INSCREVA-SE</span><ArrowUpRight /></a></Button>
+                      </article>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           ))}
           <Button variant="event" size="event" className="schedule-toggle" onClick={() => setShowFullSchedule((current) => !current)} aria-expanded={showFullSchedule}>
