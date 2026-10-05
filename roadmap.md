@@ -19,4 +19,5 @@
 - [x] Reduzir o corte e melhorar a apresentação da imagem principal
 - [x] Adicionar Jonathan aos palestrantes e à agenda de 15/10
 - [x] Reorganizar a agenda para dois horários em cada um dos três dias
-- [ ] Verificar a página completa após as alterações
+- [x] Organizar a agenda por categoria (ADS e Mecatrônica) com os mesmos dias e horários
+- [x] Verificar a página completa após as alterações

@@ -64,7 +64,7 @@ function Field({ red, ink, muted }: { red: string; ink: string; muted: string })
         phase: i * 1.3,
         red: i % 3 === 0,
       })),
-    [],
+    []
   );
 
   const nodeRefs = useRef<(THREE.Mesh | null)[]>([]);
@@ -83,51 +83,21 @@ function Field({ red, ink, muted }: { red: string; ink: string; muted: string })
       if (kind === 0) {
         ctx.strokeRect(32, 32, 64, 64);
         for (let p = 40; p <= 88; p += 16) {
-          ctx.beginPath();
-          ctx.moveTo(p, 20);
-          ctx.lineTo(p, 32);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.moveTo(p, 96);
-          ctx.lineTo(p, 108);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.moveTo(20, p);
-          ctx.lineTo(32, p);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.moveTo(96, p);
-          ctx.lineTo(108, p);
-          ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(p, 20); ctx.lineTo(p, 32); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(p, 96); ctx.lineTo(p, 108); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(20, p); ctx.lineTo(32, p); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(96, p); ctx.lineTo(108, p); ctx.stroke();
         }
         ctx.strokeRect(48, 48, 32, 32);
       } else if (kind === 1) {
-        ctx.beginPath();
-        ctx.moveTo(48, 34);
-        ctx.lineTo(25, 64);
-        ctx.lineTo(48, 94);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(80, 34);
-        ctx.lineTo(103, 64);
-        ctx.lineTo(80, 94);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(71, 25);
-        ctx.lineTo(57, 103);
-        ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(48, 34); ctx.lineTo(25, 64); ctx.lineTo(48, 94); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(80, 34); ctx.lineTo(103, 64); ctx.lineTo(80, 94); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(71, 25); ctx.lineTo(57, 103); ctx.stroke();
       } else {
-        ctx.beginPath();
-        ctx.arc(64, 64, 26, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.arc(64, 64, 8, 0, Math.PI * 2);
-        ctx.stroke();
+        ctx.beginPath(); ctx.arc(64, 64, 26, 0, Math.PI * 2); ctx.stroke();
+        ctx.beginPath(); ctx.arc(64, 64, 8, 0, Math.PI * 2); ctx.stroke();
         for (let a = 0; a < Math.PI * 2; a += Math.PI / 4) {
-          ctx.beginPath();
-          ctx.moveTo(64 + Math.cos(a) * 27, 64 + Math.sin(a) * 27);
-          ctx.lineTo(64 + Math.cos(a) * 43, 64 + Math.sin(a) * 43);
-          ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(64 + Math.cos(a) * 27, 64 + Math.sin(a) * 27); ctx.lineTo(64 + Math.cos(a) * 43, 64 + Math.sin(a) * 43); ctx.stroke();
         }
       }
       const texture = new THREE.CanvasTexture(canvas);
@@ -138,16 +108,15 @@ function Field({ red, ink, muted }: { red: string; ink: string; muted: string })
   }, [ink, muted, red]);
 
   const icons = useMemo(
-    () =>
-      Array.from({ length: 22 }, (_, i) => ({
-        x: (Math.random() - 0.5) * 28,
-        y: (Math.random() - 0.5) * 17,
-        z: -2 - Math.random() * 7,
-        size: 0.45 + Math.random() * 0.55,
-        kind: i % 3,
-        phase: i * 0.91,
-      })),
-    [],
+    () => Array.from({ length: 22 }, (_, i) => ({
+      x: (Math.random() - 0.5) * 28,
+      y: (Math.random() - 0.5) * 17,
+      z: -2 - Math.random() * 7,
+      size: 0.45 + Math.random() * 0.55,
+      kind: i % 3,
+      phase: i * 0.91,
+    })),
+    []
   );
   const iconRefs = useRef<(THREE.Sprite | null)[]>([]);
 
@@ -193,12 +162,7 @@ function Field({ red, ink, muted }: { red: string; ink: string; muted: string })
             }}
           >
             <octahedronGeometry args={[n.size]} />
-            <meshBasicMaterial
-              color={n.red ? red : ink}
-              wireframe
-              transparent
-              opacity={n.red ? 0.5 : 0.28}
-            />
+            <meshBasicMaterial color={n.red ? red : ink} wireframe transparent opacity={n.red ? 0.5 : 0.28} />
           </mesh>
         ))}
       </group>
@@ -214,12 +178,7 @@ function Field({ red, ink, muted }: { red: string; ink: string; muted: string })
               iconRefs.current[i] = sprite;
             }}
           >
-            <spriteMaterial
-              map={texture}
-              transparent
-              opacity={icon.kind === 1 ? 0.22 : 0.13}
-              depthWrite={false}
-            />
+            <spriteMaterial map={texture} transparent opacity={icon.kind === 1 ? 0.22 : 0.13} depthWrite={false} />
           </sprite>
         );
       })}
@@ -231,11 +190,7 @@ export default function SiteBackgroundScene() {
   const { red, ink, muted } = useThemeColors();
   return (
     <div className="site-bg" aria-hidden="true">
-      <Canvas
-        dpr={[1, 1.5]}
-        camera={{ position: [0, 0, 10], fov: 55 }}
-        gl={{ antialias: true, alpha: true }}
-      >
+      <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 10], fov: 55 }} gl={{ antialias: true, alpha: true }}>
         <Field red={red} ink={ink} muted={muted} />
       </Canvas>
     </div>
