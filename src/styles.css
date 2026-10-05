@@ -101,6 +101,16 @@ h1, h2, h3, p { margin-top: 0; }
 .schedule-day-hidden { display: none; }
 .schedule-track + .schedule-track { margin-top: 3rem; }
 .track-label { display: block; margin-bottom: .8rem; color: var(--primary); font-size: .82rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.track-filter { display: flex; flex-wrap: wrap; gap: .6rem; margin: -1.5rem 0 1.25rem; }
+.track-filter button { display: inline-flex; align-items: center; justify-content: space-between; gap: .9rem; min-height: 3rem; padding: .8rem 1.15rem; border: 1px solid var(--border); background: transparent; color: var(--muted-foreground); font-family: var(--font-sans); font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease; }
+.track-filter button:hover { color: var(--foreground); border-color: color-mix(in oklab, var(--primary) 55%, var(--border)); }
+.track-filter button.is-active { background: var(--primary); border-color: var(--primary); color: var(--primary-foreground); }
+.track-filter button:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+.track-filter button small { font-family: var(--font-display); font-size: 1.05rem; letter-spacing: 0; opacity: .55; }
+.track-filter button.is-active small { opacity: .85; }
+.track-filter-note { margin: 0 0 clamp(2.5rem, 5vw, 3.5rem); color: var(--muted-foreground); font-size: .74rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.schedule-track { animation: agenda-reveal 340ms cubic-bezier(.22, 1, .36, 1) both; }
+@keyframes agenda-reveal { from { opacity: 0; transform: translateY(.75rem); } to { opacity: 1; transform: none; } }
 .schedule-list { border-top: 1px solid var(--border); }
 .schedule-list article { display: grid; grid-template-columns: 170px minmax(0, 1fr) auto; gap: 2rem; align-items: start; padding: 2rem 0; border-bottom: 1px solid var(--border); }
 .schedule-list time { font-family: var(--font-display); color: var(--primary); font-size: 1.8rem; }
@@ -169,6 +179,8 @@ footer p { margin: 0; color: var(--muted-foreground); }
   .hero-actions { align-items: flex-start; }
   .section-heading { grid-template-columns: auto 1fr; }
   .section-heading h2 { font-size: clamp(2rem, 10vw, 3.4rem); }
+  .track-filter { gap: .5rem; }
+  .track-filter button { flex: 1 1 100%; }
   .speaker-grid { grid-template-columns: 1fr; }
   .schedule-list article { grid-template-columns: 1fr auto; gap: 1rem; }
   .schedule-list time { grid-column: 1 / -1; }

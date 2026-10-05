@@ -21,3 +21,4 @@
 - [x] Reorganizar a agenda para dois horários em cada um dos três dias
 - [x] Organizar a agenda por categoria (ADS e Mecatrônica) com os mesmos dias e horários
 - [x] Verificar a página completa após as alterações
+- [x] Tornar a seleção de categoria da agenda um filtro (todas, ADS, Mecatrônica)
