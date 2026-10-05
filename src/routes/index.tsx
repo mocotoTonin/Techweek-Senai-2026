@@ -108,6 +108,21 @@ const schedule = [
   },
 ];
 
+const trackFilters = [
+  { id: "", label: "Todas as categorias" },
+  { id: "ANÁLISE E DESENVOLVIMENTO DE SISTEMAS", label: "Análise e Desenvolvimento de Sistemas" },
+  { id: "MECATRÔNICA", label: "Mecatrônica" },
+];
+
+function activitiesIn(filter: string) {
+  return schedule.reduce(
+    (total, day) => total + day.tracks
+      .filter((track) => !filter || track.category === filter)
+      .reduce((count, track) => count + track.activities.length, 0),
+    0,
+  );
+}
+
 const speakers = [
   { image: jonathanPhoto.url, name: "Jonathan Oliveira Bergamo", role: "Engenheiro de Software", company: "Natoora", bio: "Engenheiro de Software Full-Stack com experiência internacional, especializado no desenvolvimento de soluções web e mobile para o mercado global de tecnologia." },
   { image: gabriel, name: "Gabriel Faria e Silva", role: "Gestor de Projetos", company: "Cyber Horizon Group", bio: "Especialista em cloud e arquitetura de dados, transforma desafios complexos em soluções simples e escaláveis." },
@@ -131,6 +146,7 @@ function Index() {
   const [slide, setSlide] = useState(0);
   const [showFullSchedule, setShowFullSchedule] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [trackFilter, setTrackFilter] = useState("");
 
   useEffect(() => {
     document.documentElement.classList.add("dark");
@@ -190,10 +206,28 @@ function Index() {
       <section id="agenda" className="page-section">
         <div className="section-shell">
           <SectionHeading index="02">AGENDA DO <em>EVENTO</em></SectionHeading>
-          {schedule.map((day, dayIndex) => (
+          <div className="track-filter" role="group" aria-label="Filtrar agenda por categoria">
+            {trackFilters.map((filter) => {
+              const active = trackFilter === filter.id;
+              return (
+                <button key={filter.id || "todas"} type="button" className={active ? "is-active" : ""} aria-pressed={active} onClick={() => setTrackFilter(filter.id)}>
+                  <span>{filter.label}</span><small>{activitiesIn(filter.id)}</small>
+                </button>
+              );
+            })}
+          </div>
+          <p className="track-filter-note" aria-live="polite">
+            {trackFilter
+              ? `Mostrando ${trackFilters.find((filter) => filter.id === trackFilter)?.label ?? trackFilter} · ${activitiesIn(trackFilter)} atividades nos três dias`
+              : `Mostrando todas as categorias · ${activitiesIn("")} atividades nos três dias`}
+          </p>
+          {schedule.map((day, dayIndex) => {
+            const tracks = trackFilter ? day.tracks.filter((track) => track.category === trackFilter) : day.tracks;
+            if (!tracks.length) return null;
+            return (
             <div key={day.date} className={dayIndex > 0 && !showFullSchedule ? "schedule-day schedule-day-hidden" : "schedule-day"}>
               <div className="agenda-date"><CalendarDays /><span>{day.weekday}</span><strong>{day.date}</strong></div>
-              {day.tracks.map((track) => (
+              {tracks.map((track) => (
                 <div key={track.category} className="schedule-track">
                   <b className="track-label">{track.category}</b>
                   <div className="schedule-list">
@@ -208,7 +242,8 @@ function Index() {
                 </div>
               ))}
             </div>
-          ))}
+            );
+          })}
           <Button variant="event" size="event" className="schedule-toggle" onClick={() => setShowFullSchedule((current) => !current)} aria-expanded={showFullSchedule}>
             {showFullSchedule ? <Minus /> : <Plus />} {showFullSchedule ? "VER MENOS" : "VER A AGENDA COMPLETA"}
           </Button>
