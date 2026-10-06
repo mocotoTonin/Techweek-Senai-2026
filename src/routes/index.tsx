@@ -31,7 +31,7 @@ import michelePhoto from "@/assets/michele.jpeg";
 import ericPhoto from "@/assets/eric.jpg";
 import leticiaPhoto from "@/assets/leticia.jpeg";
 import humbertoPhoto from "@/assets/humberto.jpeg";
-import facultyPhoto from "@/assets/senai.jpg";
+import facultyPhoto from "@/assets/senai1.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -342,7 +342,12 @@ function Index() {
     window.requestAnimationFrame(() => {
       const target = document.getElementById(targetId);
       if (!target) return;
-      target.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "center" });
+      target.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "instant"
+          : "smooth",
+        block: "center",
+      });
       target.focus({ preventScroll: true });
       window.history.replaceState(null, "", `#${targetId}`);
     });
@@ -465,7 +470,11 @@ function Index() {
               ? `Mostrando ${trackFilters.find((filter) => filter.id === trackFilter)?.label ?? trackFilter} · ${activitiesIn(trackFilter)} atividades nos três dias`
               : `Mostrando todas as categorias · ${activitiesIn("")} atividades nos três dias`}
           </p>
-          {selectedSpeaker && <p className="speaker-agenda-notice" role="status">Atividades de <strong>{selectedSpeaker}</strong> destacadas abaixo.</p>}
+          {selectedSpeaker && (
+            <p className="speaker-agenda-notice" role="status">
+              Atividades de <strong>{selectedSpeaker}</strong> destacadas abaixo.
+            </p>
+          )}
           {schedule.map((day, dayIndex) => {
             const tracks = trackFilter
               ? day.tracks.filter((track) => track.category === trackFilter)
@@ -494,7 +503,11 @@ function Index() {
                           key={`${item.title}-${activityIndex}`}
                           id={activityId(dayIndex, day.tracks.indexOf(track), activityIndex)}
                           tabIndex={-1}
-                          className={selectedSpeaker && item.speaker.startsWith(`${selectedSpeaker} ·`) ? "activity-highlighted" : ""}
+                          className={
+                            selectedSpeaker && item.speaker.startsWith(`${selectedSpeaker} ·`)
+                              ? "activity-highlighted"
+                              : ""
+                          }
                         >
                           <time>{item.time}</time>
                           <div>
@@ -551,17 +564,37 @@ function Index() {
           </SectionHeading>
           <div className="speaker-grid">
             {speakers.map((speaker) => {
-              const dayIndex = schedule.findIndex((day) => day.tracks.some((track) => track.activities.some((activity) => activity.speaker.startsWith(`${speaker.name} ·`))));
+              const dayIndex = schedule.findIndex((day) =>
+                day.tracks.some((track) =>
+                  track.activities.some((activity) =>
+                    activity.speaker.startsWith(`${speaker.name} ·`),
+                  ),
+                ),
+              );
               const day = schedule[dayIndex];
               if (!day) return null;
-              const trackIndex = day.tracks.findIndex((track) => track.activities.some((activity) => activity.speaker.startsWith(`${speaker.name} ·`)));
+              const trackIndex = day.tracks.findIndex((track) =>
+                track.activities.some((activity) =>
+                  activity.speaker.startsWith(`${speaker.name} ·`),
+                ),
+              );
               const track = day.tracks[trackIndex];
               if (!track) return null;
-              const activityIndex = track.activities.findIndex((activity) => activity.speaker.startsWith(`${speaker.name} ·`));
+              const activityIndex = track.activities.findIndex((activity) =>
+                activity.speaker.startsWith(`${speaker.name} ·`),
+              );
               const activity = track.activities[activityIndex];
               if (!activity) return null;
               const targetId = activityId(dayIndex, trackIndex, activityIndex);
-              return <SpeakerCard key={speaker.name} speaker={speaker} talkTitle={activity.title} targetId={targetId} onNavigate={() => navigateToTalk(speaker.name, targetId)} />;
+              return (
+                <SpeakerCard
+                  key={speaker.name}
+                  speaker={speaker}
+                  talkTitle={activity.title}
+                  targetId={targetId}
+                  onNavigate={() => navigateToTalk(speaker.name, targetId)}
+                />
+              );
             })}
           </div>
         </div>
