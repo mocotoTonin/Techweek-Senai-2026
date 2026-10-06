@@ -22,3 +22,4 @@
 - [x] Organizar a agenda por categoria (ADS e Mecatrônica) com os mesmos dias e horários
 - [x] Verificar a página completa após as alterações
 - [x] Tornar a seleção de categoria da agenda um filtro (todas, ADS, Mecatrônica)
+- [ ] Mostrar apenas fotos dos palestrantes, com giro, ampliação e navegação para a atividade destacada
