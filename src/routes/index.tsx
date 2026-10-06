@@ -31,6 +31,7 @@ import michelePhoto from "@/assets/michele.jpeg";
 import ericPhoto from "@/assets/eric.jpg";
 import leticiaPhoto from "@/assets/leticia.jpeg";
 import humbertoPhoto from "@/assets/humberto.jpeg";
+import laorPhoto from "@/assets/laor.jpg";
 import facultyPhoto from "@/assets/senai1.png";
 
 export const Route = createFileRoute("/")({
@@ -85,18 +86,18 @@ const schedule = [
         activities: [
           {
             time: "19:30 — 20:30",
-            type: "A DEFINIR",
-            title: "A DEFINIR",
-            speaker: "A DEFINIR",
-            place: "A DEFINIR",
-            text: "Palestrante e informações sobre a atividade serão divulgados em breve.",
+            type: "PALESTRA",
+            title: "Navegando pela Tecnologia: Liderando Projetos, Pessoas e Desafios",
+            speaker: "Letícia Fernanda Anhaia Perosa · Analista de Projetos",
+            place: "Auditório Bloco B - Andar Superior",
+            text: "Uma jornada pelos bastidores da carreira em tecnologia, abordando os desafios da transição da área técnica para a liderança e as principais lições aprendidas na gestão de projetos e equipes.",
           },
           {
             time: "21:00 — 22:00",
             type: "PALESTRA",
             title: "A Evolução da Função do Desenvolvedor na Era da IA",
             speaker: "Humberto Cornia · Sr. Delivery Consultant",
-            place: "A DEFINIR",
+            place: "Auditório Bloco B - Andar Superior",
             text: "Uma reflexão sobre como a inteligência artificial está transformando o papel do desenvolvedor, tornando o julgamento técnico, a resolução de problemas e a capacidade de avaliar soluções geradas por IA habilidades cada vez mais importantes.",
           },
         ],
@@ -110,7 +111,7 @@ const schedule = [
             type: "MINICURSO",
             title: "Manufatura Aditiva: Desmistificando a Impressão 3D em Resina",
             speaker: "Antoni Dalmatti Alves Lima Frigério · Faber",
-            place: "A DEFINIR",
+            place: "Laboratório de Projetos",
             text: "Uma introdução prática aos fundamentos da impressão 3D em resina, abordando funcionamento, preparação dos modelos, impressão, pós-processamento, aplicações e possibilidades dentro da manufatura aditiva.",
           },
           {
@@ -118,7 +119,7 @@ const schedule = [
             type: "PALESTRA",
             title: "A DEFINIR",
             speaker: "A DEFINIR",
-            place: "A DEFINIR",
+            place: "Auditório Bloco B - Térreo",
             text: "Palestrante e informações sobre a atividade serão divulgados em breve.",
           },
           {
@@ -126,7 +127,7 @@ const schedule = [
             type: "A DEFINIR",
             title: "A DEFINIR",
             speaker: "A DEFINIR",
-            place: "A DEFINIR",
+            place: "Auditório Bloco B - Térreo",
             text: "Palestrante e informações sobre a atividade serão divulgados em breve.",
           },
         ],
@@ -146,7 +147,7 @@ const schedule = [
             type: "PALESTRA",
             title: "Internacionalização em TI",
             speaker: "Jonathan Oliveira Bergamo · Engenheiro de Software",
-            place: "A DEFINIR",
+            place: "Auditório Bloco B - Andar Superior",
             text: "Guia prático para profissionais brasileiros ingressarem no mercado global de tecnologia, explorando preparação técnica, inglês, contratação remota e trabalho internacional.",
           },
           {
@@ -154,7 +155,7 @@ const schedule = [
             type: "A DEFINIR",
             title: "A DEFINIR",
             speaker: "A DEFINIR",
-            place: "A DEFINIR",
+            place: "Auditório Bloco B - Andar Superior",
             text: "Palestrante e informações sobre a atividade serão divulgados em breve.",
           },
         ],
@@ -168,7 +169,7 @@ const schedule = [
             type: "PALESTRA",
             title: "E quando não tem manual?",
             speaker: "Michele da Rocha Moreira · Psicanalista",
-            place: "A DEFINIR",
+            place: "Auditório Bloco B - Térreo",
             text: "Uma reflexão sobre resiliência e inteligência emocional diante de situações com informações insuficientes, variáveis fora do nosso controle e respostas que ainda não existem.",
           },
           {
@@ -176,7 +177,7 @@ const schedule = [
             type: "A DEFINIR",
             title: "A DEFINIR",
             speaker: "A DEFINIR",
-            place: "A DEFINIR",
+            place: "Auditório Bloco B - Térreo",
             text: "Palestrante e informações sobre a atividade serão divulgados em breve.",
           },
         ],
@@ -194,17 +195,17 @@ const schedule = [
           {
             time: "19:30 — 20:30",
             type: "PALESTRA",
-            title: "Navegando pela Tecnologia: Liderando Projetos, Pessoas e Desafios",
-            speaker: "Letícia Fernanda Anhaia Perosa · Analista de Projetos",
-            place: "A DEFINIR",
-            text: "Uma jornada pelos bastidores da carreira em tecnologia, abordando os desafios da transição da área técnica para a liderança e as principais lições aprendidas na gestão de projetos e equipes.",
+            title: "Geração Z não rejeita trabalho, mas redefine carreiras",
+            speaker: "Laôr Fernandes de Oliveira · Gerente de Projetos Educacionais",
+            place: "Auditório Bloco B - Andar Superior",
+            text: "Uma reflexão sobre a relação da Geração Z com o trabalho, abordando construção de carreira, culturas profissionais, impacto da inteligência artificial nas vagas de entrada e desenvolvimento de liderança com autonomia e equilíbrio.",
           },
           {
             time: "21:00 — 22:00",
             type: "PALESTRA",
             title: "Seu comportamento fala antes de você",
             speaker: "Eric Garcia · Treinador Comportamental",
-            place: "A DEFINIR",
+            place: "Auditório Bloco B - Andar Superior",
             text: "Uma reflexão sobre comportamento e autoconhecimento, incentivando cada aluno a analisar como suas atitudes são percebidas pelas pessoas ao seu redor e como elas se refletem na vida real.",
           },
         ],
@@ -218,7 +219,7 @@ const schedule = [
             type: "PALESTRA",
             title: "Seu comportamento fala antes de você",
             speaker: "Eric Garcia · Treinador Comportamental",
-            place: "A DEFINIR",
+            place: "Auditório Bloco B - Térreo",
             text: "Uma reflexão sobre comportamento e autoconhecimento, incentivando cada aluno a analisar como suas atitudes são percebidas pelas pessoas ao seu redor e como elas se refletem na vida real.",
           },
           {
@@ -226,7 +227,7 @@ const schedule = [
             type: "A DEFINIR",
             title: "A DEFINIR",
             speaker: "A DEFINIR",
-            place: "A DEFINIR",
+            place: "Auditório Bloco B - Térreo",
             text: "Palestrante e informações sobre a atividade serão divulgados em breve.",
           },
         ],
@@ -294,6 +295,13 @@ const speakers = [
     role: "Sr. Delivery Consultant",
     company: "AWS",
     bio: "Especialista em arquitetura em nuvem e transformação tecnológica, com quase 7 anos de atuação na AWS. Possui experiência como Tech Lead, 7 certificações AWS e atuação com ferramentas de desenvolvimento assistido por inteligência artificial.",
+  },
+  {
+    image: laorPhoto,
+    name: "Laôr Fernandes de Oliveira",
+    role: "Gerente de Projetos Educacionais",
+    company: "SESI",
+    bio: "Profissional da área de gestão da educação, com atuação em projetos educacionais e foco no desenvolvimento de carreira, liderança, autonomia e preparação dos jovens para os novos desafios do mercado de trabalho.",
   },
 ];
 
