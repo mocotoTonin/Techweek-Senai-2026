@@ -11,3 +11,4 @@
 
 - Keep the event as a single static landing page with in-page section navigation; this matches the reference experience and requires no backend.
 - Keep the event exclusively dark with SENAI red emphasis; use the SENAI Sorocaba facade across the header and opening, fading into the continuous #212121 background, while the header scrolls away with the page.
+- Keep speaker photo interactions in SpeakerCard; resolve agenda targets from existing schedule entries so navigation expands the agenda and highlights the speaker's activities without duplicating event content.

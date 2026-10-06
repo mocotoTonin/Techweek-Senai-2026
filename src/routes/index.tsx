@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { SpeakerCard } from "@/components/SpeakerCard";
 import eventLab from "@/assets/sesi-event-lab.jpg";
 import eventTalk from "@/assets/sesi-event-talk.jpg";
 import eventWorkshop from "@/assets/sesi-event-workshop.jpg";
@@ -317,6 +318,23 @@ function Index() {
   const [showFullSchedule, setShowFullSchedule] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [trackFilter, setTrackFilter] = useState("");
+  const [selectedSpeaker, setSelectedSpeaker] = useState("");
+
+  const activityId = (dayIndex: number, trackIndex: number, activityIndex: number) =>
+    `atividade-${dayIndex}-${trackIndex}-${activityIndex}`;
+
+  function navigateToTalk(name: string, targetId: string) {
+    setTrackFilter("");
+    setShowFullSchedule(true);
+    setSelectedSpeaker(name);
+    window.requestAnimationFrame(() => {
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      target.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "center" });
+      target.focus({ preventScroll: true });
+      window.history.replaceState(null, "", `#${targetId}`);
+    });
+  }
 
   useEffect(() => {
     document.documentElement.classList.add("dark");
@@ -435,6 +453,7 @@ function Index() {
               ? `Mostrando ${trackFilters.find((filter) => filter.id === trackFilter)?.label ?? trackFilter} · ${activitiesIn(trackFilter)} atividades nos três dias`
               : `Mostrando todas as categorias · ${activitiesIn("")} atividades nos três dias`}
           </p>
+          {selectedSpeaker && <p className="speaker-agenda-notice" role="status">Atividades de <strong>{selectedSpeaker}</strong> destacadas abaixo.</p>}
           {schedule.map((day, dayIndex) => {
             const tracks = trackFilter
               ? day.tracks.filter((track) => track.category === trackFilter)
@@ -458,8 +477,13 @@ function Index() {
                   <div key={track.category} className="schedule-track">
                     <b className="track-label">{track.category}</b>
                     <div className="schedule-list">
-                      {track.activities.map((item) => (
-                        <article key={item.title}>
+                      {track.activities.map((item, activityIndex) => (
+                        <article
+                          key={`${item.title}-${activityIndex}`}
+                          id={activityId(dayIndex, day.tracks.indexOf(track), activityIndex)}
+                          tabIndex={-1}
+                          className={selectedSpeaker && item.speaker.startsWith(`${selectedSpeaker} ·`) ? "activity-highlighted" : ""}
+                        >
                           <time>{item.time}</time>
                           <div>
                             <b className="activity-type">{item.type}</b>
@@ -514,23 +538,19 @@ function Index() {
             CONHEÇA OS <em>PALESTRANTES</em>
           </SectionHeading>
           <div className="speaker-grid">
-            {speakers.map((speaker) => (
-              <article key={speaker.name}>
-                <div className="speaker-photo">
-                  <img
-                    src={speaker.image}
-                    alt={`Retrato de ${speaker.name}`}
-                    loading="lazy"
-                    width={768}
-                    height={960}
-                  />
-                </div>
-                <h3>{speaker.name}</h3>
-                <strong>{speaker.role}</strong>
-                <small>{speaker.company}</small>
-                <p>{speaker.bio}</p>
-              </article>
-            ))}
+            {speakers.map((speaker) => {
+              const dayIndex = schedule.findIndex((day) => day.tracks.some((track) => track.activities.some((activity) => activity.speaker.startsWith(`${speaker.name} ·`))));
+              const day = schedule[dayIndex];
+              if (!day) return null;
+              const trackIndex = day.tracks.findIndex((track) => track.activities.some((activity) => activity.speaker.startsWith(`${speaker.name} ·`)));
+              const track = day.tracks[trackIndex];
+              if (!track) return null;
+              const activityIndex = track.activities.findIndex((activity) => activity.speaker.startsWith(`${speaker.name} ·`));
+              const activity = track.activities[activityIndex];
+              if (!activity) return null;
+              const targetId = activityId(dayIndex, trackIndex, activityIndex);
+              return <SpeakerCard key={speaker.name} speaker={speaker} talkTitle={activity.title} targetId={targetId} onNavigate={() => navigateToTalk(speaker.name, targetId)} />;
+            })}
           </div>
         </div>
       </section>
