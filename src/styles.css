@@ -548,7 +548,6 @@ p {
 .speaker-talk span { font-size: 0.65rem; color: var(--muted-foreground); }
 .speaker-talk b { display: block; font-size: 0.82rem; margin-top: 0.4rem; }
 .speaker-talk svg { margin-top: 0.5rem; color: var(--primary); }
-.speaker-card .speaker-enlarge,
 .speaker-card .speaker-info-toggle {
   position: absolute;
   z-index: 2;
@@ -559,22 +558,8 @@ p {
   color: var(--foreground);
   transition: background 200ms ease, color 200ms ease;
 }
-.speaker-card .speaker-enlarge { right: 0.75rem; bottom: 0.75rem; }
-.speaker-card:hover .speaker-enlarge,
-.speaker-card .speaker-enlarge:focus-visible {
-  background: var(--primary);
-  color: var(--primary-foreground);
-  border-color: var(--primary);
-}
 .speaker-info-toggle { display: none; right: 0.75rem; top: 0.75rem; }
 @media (hover: none), (pointer: coarse) { .speaker-info-toggle { display: inline-flex; } }
-.speaker-lightbox {
-  width: min(94vw, 960px);
-  max-width: 960px;
-  padding: 2.75rem 0.75rem 0.75rem;
-  border-radius: 0;
-}
-.speaker-lightbox > img { width: 100%; max-height: 80svh; object-fit: contain; }
 .speaker-agenda-notice { color: var(--muted-foreground); font-size: 0.9rem; }
 .speaker-agenda-notice strong { color: var(--primary); }
 .schedule-list article.activity-highlighted {
@@ -663,10 +648,32 @@ footer p {
   display: flex;
   gap: 0.5rem;
 }
-.past-site {
+.past-editions {
   grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.25rem;
+}
+.past-editions h4 {
+  margin: 0;
+  color: var(--foreground);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.past-editions ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.past-editions a {
   display: inline-flex;
-  justify-self: start;
   align-items: center;
   gap: 0.5rem;
   color: var(--muted-foreground);
@@ -675,14 +682,12 @@ footer p {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  border-top: 1px solid var(--border);
-  padding-top: 1.25rem;
   transition: color 160ms ease;
 }
-.past-site:hover {
+.past-editions a:hover {
   color: var(--primary);
 }
-.past-site svg {
+.past-editions svg {
   width: 0.95rem;
 }
 

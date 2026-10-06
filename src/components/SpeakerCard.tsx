@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { ArrowUpRight, Info, Maximize2 } from "lucide-react";
+import { ArrowUpRight, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 type Speaker = {
   image: string;
@@ -17,7 +16,6 @@ export function SpeakerCard({ speaker, talkTitle, targetId, onNavigate }: {
   targetId: string;
   onNavigate: () => void;
 }) {
-  const [expanded, setExpanded] = useState(false);
   const [flipped, setFlipped] = useState(false);
 
   return (
@@ -50,16 +48,6 @@ export function SpeakerCard({ speaker, talkTitle, targetId, onNavigate }: {
       <Button variant="outline" size="icon" className="speaker-info-toggle" aria-label={`Informações de ${speaker.name}`} aria-pressed={flipped} onClick={() => setFlipped((value) => !value)}>
         <Info />
       </Button>
-      <Button variant="outline" size="icon" className="speaker-enlarge" title="Ampliar foto" aria-label={`Ampliar foto de ${speaker.name}`} onClick={() => setExpanded(true)}>
-        <Maximize2 />
-      </Button>
-      <Dialog open={expanded} onOpenChange={setExpanded}>
-        <DialogContent className="speaker-lightbox">
-          <DialogTitle className="sr-only">Foto de {speaker.name}</DialogTitle>
-          <DialogDescription className="sr-only">{speaker.role} · {speaker.company}</DialogDescription>
-          <img src={speaker.image} alt={`Retrato ampliado de ${speaker.name}`} />
-        </DialogContent>
-      </Dialog>
     </article>
   );
 }

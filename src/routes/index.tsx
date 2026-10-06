@@ -668,14 +668,20 @@ function Index() {
             </a>
           </Button>
         </div>
-        <a
-          className="past-site"
-          href="https://techweek-senai-sorocaba.vercel.app/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          SITE DA EDIÇÃO ANTERIOR · 2025 <ArrowUpRight />
-        </a>
+        <nav className="past-editions" aria-labelledby="past-editions-title">
+          <h4 id="past-editions-title">EDIÇÕES ANTERIORES</h4>
+          <ul>
+            <li>
+              <a
+                href="https://techweek-senai-sorocaba.vercel.app/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                EDIÇÃO 2025 <ArrowUpRight />
+              </a>
+            </li>
+          </ul>
+        </nav>
       </footer>
     </main>
   );
