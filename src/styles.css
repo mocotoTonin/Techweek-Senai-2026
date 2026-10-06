@@ -481,10 +481,12 @@ p {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(1rem, 2.5vw, 2.5rem);
+  max-width: 1150px;
+  margin: 0 auto;
 }
 .speaker-card {
   position: relative;
-  height: 560px;
+  height: 505px;
   min-width: 0;
   perspective: 1400px;
 }
@@ -601,12 +603,12 @@ p {
 }
 .gallery-stage {
   position: relative;
-  max-width: 900px;
+  max-width: 1180px;
   margin: 0 auto;
 }
 .gallery-stage > img {
   width: 100%;
-  aspect-ratio: 16 / 8;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   display: block;
 }
