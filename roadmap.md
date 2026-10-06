@@ -23,4 +23,4 @@
 - [x] Verificar a página completa após as alterações
 - [x] Tornar a seleção de categoria da agenda um filtro (todas, ADS, Mecatrônica)
 - [x] Mostrar apenas fotos dos palestrantes, com giro, ampliação e navegação para a atividade destacada
-- [ ] Alargar fotos, remover automaticamente a indicação da palestra e verificar animações de entrada nos dois sentidos da rolagem
+- [x] Alargar fotos, remover automaticamente a indicação da palestra e verificar animações de entrada nos dois sentidos da rolagem

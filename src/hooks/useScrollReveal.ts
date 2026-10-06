@@ -19,11 +19,11 @@ export function useScrollReveal() {
       for (const entry of entries) {
         const element = entry.target as HTMLElement;
         if (entry.isIntersecting) {
-          element.dataset.revealDirection = direction;
+          element.dataset["revealDirection"] = direction;
           element.classList.add("reveal-visible");
         } else {
           element.classList.remove("reveal-visible");
-          element.dataset.revealDirection = entry.boundingClientRect.top < 0 ? "up" : "down";
+          element.dataset["revealDirection"] = entry.boundingClientRect.top < 0 ? "up" : "down";
         }
       }
     }, { threshold: 0.06 });
@@ -34,7 +34,7 @@ export function useScrollReveal() {
       ).forEach((element) => {
         if (observed.has(element)) return;
         observed.add(element);
-        element.dataset.revealDirection = "down";
+        element.dataset["revealDirection"] = "down";
         element.classList.add("scroll-reveal");
         observer.observe(element);
       });
