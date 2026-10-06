@@ -21,6 +21,7 @@ import {
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SpeakerCard } from "@/components/SpeakerCard";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import eventLab from "@/assets/sesi-event-lab.jpg";
 import eventTalk from "@/assets/sesi-event-talk.jpg";
 import eventWorkshop from "@/assets/sesi-event-workshop.jpg";
@@ -314,11 +315,22 @@ function SectionHeading({ index, children }: { index: string; children: React.Re
 }
 
 function Index() {
+  useScrollReveal();
   const [slide, setSlide] = useState(0);
   const [showFullSchedule, setShowFullSchedule] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [trackFilter, setTrackFilter] = useState("");
   const [selectedSpeaker, setSelectedSpeaker] = useState("");
+
+  useEffect(() => {
+    if (!selectedSpeaker) return;
+    const timeout = window.setTimeout(() => {
+      setSelectedSpeaker("");
+      const focused = document.activeElement;
+      if (focused instanceof HTMLElement && focused.id.startsWith("atividade-")) focused.blur();
+    }, 5000);
+    return () => window.clearTimeout(timeout);
+  }, [selectedSpeaker]);
 
   const activityId = (dayIndex: number, trackIndex: number, activityIndex: number) =>
     `atividade-${dayIndex}-${trackIndex}-${activityIndex}`;
