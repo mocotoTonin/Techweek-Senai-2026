@@ -32,6 +32,7 @@ import ericPhoto from "@/assets/eric.jpg";
 import leticiaPhoto from "@/assets/leticia.jpeg";
 import humbertoPhoto from "@/assets/humberto.jpeg";
 import laorPhoto from "@/assets/laor.jpg";
+import brunoPhoto from "@/assets/bruno.jpg";
 import facultyPhoto from "@/assets/senai1.png";
 
 export const Route = createFileRoute("/")({
@@ -174,11 +175,11 @@ const schedule = [
           },
           {
             time: "21:00 — 22:00",
-            type: "A DEFINIR",
-            title: "A DEFINIR",
-            speaker: "A DEFINIR",
+            type: "PALESTRA",
+            title: "Manutenção Produtiva da Mente: Prevenindo o Overload no Chão de Fábrica",
+            speaker: "Bruno Souza · Psicólogo",
             place: "Auditório Bloco B - Térreo",
-            text: "Palestrante e informações sobre a atividade serão divulgados em breve.",
+            text: "Uma abordagem acessível sobre estresse e burnout no ambiente de trabalho, discutindo seus impactos na saúde mental e apresentando estratégias terapêuticas e preventivas para lidar com a sobrecarga.",
           },
         ],
       },
@@ -302,6 +303,13 @@ const speakers = [
     role: "Gerente de Projetos Educacionais",
     company: "SESI",
     bio: "Profissional da área de gestão da educação, com atuação em projetos educacionais e foco no desenvolvimento de carreira, liderança, autonomia e preparação dos jovens para os novos desafios do mercado de trabalho.",
+  },
+  {
+    image: brunoPhoto,
+    name: "Bruno Souza",
+    role: "Psicólogo",
+    company: "Psicologia Clínica",
+    bio: "Psicólogo clínico com trajetória multidisciplinar, tendo atuado por quase uma década como Técnico em Eletrotécnica no setor de manutenção. Há quase 7 anos dedica-se à área clínica, com formação complementar e mestrado pela Universidade de São Paulo (USP).",
   },
 ];
 
